@@ -1,5 +1,5 @@
-<H3>ENTER YOUR NAME</H3>
-<H3>ENTER YOUR REGISTER NO.</H3>
+<H3>ENTER YOUR NAME: Someasvar R</H3>
+<H3>ENTER YOUR REGISTER NO: 212221230103</H3>
 <H3>EX. NO.4</H3>
 <H3>DATE:</H3>
 <H1 ALIGN =CENTER> Implementation of Hidden Markov Model</H1>
@@ -21,10 +21,54 @@ Step 8:Calculate the probability of the observed sequence by summing the last ro
 Step 9:Find the most likely sequence of hidden states by selecting the hidden state with the highest probability at each time step based on the alpha matrix.<br>
 
 ## Program:
-Insert your Program here
+### Importing the package:
+```
+import numpy as np
+```
+### Defining of transition matrix and emission matrix:
+```
+transition_matrix =np.array([[0.7,0.3],[0.4,0.6]])
+emission_matrix =np.array ([[0.1,0.9],[0.8,0.2]])
+```
+### Defining of initial probabilities and observed sequence:
+```
+initial_probabilities = np.array([0.5,0.5])
+observed_sequence = np.array([1,1,1,0,0,1])
+```
+### Initialisation of alpha matrix and calculating the first row:
+```
+alpha = np. zeros ((len(observed_sequence) ,len (initial_probabilities) ) )
+alpha [0,:] = initial_probabilities *emission_matrix[:, observed_sequence [0]]
+```
+### Calculation of the rest of the matrix:
+```
+for t in range (1, len (observed_sequence) ) :
+  for j in range (len (initial_probabilities) ) :
+    alpha[t,j]= emission_matrix [j,observed_sequence[t]] *np.sum(alpha[t-1:]*transition_matrix[:, j])
+```
+### Probability of the observed sequence and printing it:
+```
+probability = np.sum(alpha[-1,:])
+print ("The probability of the observed sequence is: " ,probability)
+```
+### Weather states of the observed sequence:
+```
+most_likely_sequence=[]
+for t in range (len (observed_sequence)):
+  if alpha [t, 0] > alpha [t,1]:
+    most_likely_sequence.append ("sunny")
+  else:
+    most_likely_sequence.append ("rainy")
+print("The most likely sequence of Weather States is",most_likely_sequence)
+```
 
 ## Output:
-Show your results here
+### Probability of the observed sequence:
+![image](https://github.com/SOMEASVAR/Ex-4--AAI/assets/93434149/16ef642f-ca2b-46bc-a634-af4287a05aef)
+
+### Sequence of the weather state:
+![image](https://github.com/SOMEASVAR/Ex-4--AAI/assets/93434149/8e81aa0e-4ab1-450a-bca0-7db1a606c715)
+
 
 ## Result:
 Thus Hidden Markov Model is implemented using python.
