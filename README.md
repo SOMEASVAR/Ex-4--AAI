@@ -1,6 +1,6 @@
 <H3>NAME: SOMEASVAR R</H3>
 <H3>REGISTER NO: 212221230103</H3>
-<H3>EX. NO.4</H3>
+<H3>Experiment 4</H3>
 <H3>DATE:19/03/2024</H3>
 <H1 ALIGN =CENTER> Implementation of Hidden Markov Model</H1>
 
